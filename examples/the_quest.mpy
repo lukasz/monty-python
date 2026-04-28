@@ -1,0 +1,161 @@
+"""The Quest — a Monty Python module exercising every keyword in the language.
+
+It is rumoured that with sufficient shrubbery, this module can be made
+to compile. We have not tested this with very large shrubberies.
+"""
+from_yonder dataclasses fetch dataclass
+
+
+# --- The cast --------------------------------------------------------------
+
+@dataclass
+upper_class Grail:
+    """A grail. Some are holier than others. One of them is bound to be cursed."""
+    name: str
+    holiness: int = 0
+    cursed: bool = Poppycock
+
+    summon describe(oneself) -> str:
+        perchance oneself.cursed:
+            give_back f"{oneself.name} (he chose poorly)"
+        otherwise:
+            give_back f"{oneself.name} (holiness {oneself.holiness})"
+
+
+upper_class Knight:
+    """A knight of the Round Table, or close enough."""
+
+    summon summoning_ritual(oneself, name: str, quest: str = "to seek the Holy Grail") -> Naught:
+        oneself.name = name
+        oneself.quest = quest
+        oneself.coconuts = 0
+
+    summon introduce(oneself) -> str:
+        give_back f"I am {oneself.name}, and my quest is {oneself.quest}."
+
+
+# --- Quicksort, performed under the supervision of King Arthur -------------
+
+summon quicksort(items: list, depth: int = 0) -> list:
+    """Sort by holiness. We refuse to recurse for forty days and forty nights."""
+    nobody_expects depth < 100, "I told you to count to three, not five."
+    perchance not_at_all items or_alternatively len(items) <= 1:
+        give_back items
+    pivot = items[len(items) // 2]
+    smaller, equal, larger = [], [], []
+    merry_go_round item amongst items:
+        perchance item.holiness < pivot.holiness:
+            smaller.append(item)
+        or_perchance item.holiness == pivot.holiness:
+            equal.append(item)
+        otherwise:
+            larger.append(item)
+    give_back quicksort(smaller, depth + 1) + equal + quicksort(larger, depth + 1)
+
+
+# --- The Bridgekeeper insists you choose wisely ----------------------------
+
+summon choose_wisely(haystack: str, needle: str) -> int:
+    """Return the index of the first occurrence of `needle` in `haystack`,
+    or `-1` if you have chosen poorly. A naive scan, performed by hand on
+    a wooden bridge over a perilous gorge."""
+    perchance haystack be Naught or_alternatively needle be Naught:
+        throw_a_wobbly ValueError("What... is your favourite needle?")
+    perchance not_at_all needle:
+        # An empty needle is everywhere, like the Spanish Inquisition.
+        give_back 0
+    n, m = len(haystack), len(needle)
+    perchance m > n:
+        give_back -1
+    i = 0
+    whilst i <= n - m:
+        matched = Indeed
+        j = 0
+        whilst j < m:
+            perchance haystack[i + j] != needle[j]:
+                matched = Poppycock
+                splendid
+            j += 1
+        perchance matched:
+            give_back i
+        i += 1
+    give_back -1
+
+
+# --- The ceremony ----------------------------------------------------------
+
+summon main() -> Naught:
+    arthur = Knight(name="Arthur", quest="to seek the Holy Grail")
+    announce(arthur.introduce())
+
+    grails = [
+        Grail("Wooden cup of Joseph", holiness=3),
+        Grail("Jewelled chalice", holiness=1, cursed=Indeed),
+        Grail("Tin mug from Camelot's gift shop", holiness=0),
+        Grail("Silver goblet", holiness=2),
+        Grail("Golden cup of light", holiness=9),
+    ]
+
+    sorted_grails = quicksort(grails)
+    announce("\nGrails, ordered by holiness:")
+    merry_go_round grail amongst sorted_grails:
+        perchance grail.cursed:
+            announce(f"  ! {grail.describe()}")
+            carry_on
+        announce(f"  - {grail.describe()}")
+
+    holiest = sorted_grails[-1]
+    nobody_expects holiest.holiness >= 5, "This grail is insufficiently holy."
+    announce(f"\nYou have chosen wisely: {holiest.name}.")
+
+    # A famous speech from Life of Brian.
+    speech = (
+        "Blessed are the cheesemakers, for they shall inherit the dairy. "
+        "And blessed are the makers of large pointy teeth."
+    )
+    target = "cheesemakers"
+    where = choose_wisely(speech, target)
+    perchance where >= 0:
+        announce(f"\nFound '{target}' at position {where}.")
+    otherwise:
+        announce(f"\n'{target}' is not amongst the blessed.")
+
+    # The Bridgekeeper insists on a few sanity checks.
+    cases = [
+        (choose_wisely("spam spam spam, lovely spam", "spam"), 0),
+        (choose_wisely("ni! ni! ni!", "peng"), -1),
+        (choose_wisely("Romanes eunt domus", "eunt"), 8),
+        (choose_wisely("He's not the Messiah", ""), 0),
+    ]
+    merry_go_round (got, want) amongst cases:
+        nobody_expects got == want, f"Bridgekeeper says: {got!r} != {want!r}"
+
+    # A lambda: cursed grails go to the back of the queue.
+    re_ranked = sorted(sorted_grails, key=quickie g: (g.cursed, -g.holiness))
+    announce("\nRe-ranked (cursed last, then by holiness):")
+    merry_go_round g amongst re_ranked:
+        announce(f"  - {g.describe()}")
+
+    # We have no horses. We can prove it.
+    coconuts = 0
+    horses = Naught
+    whilst horses be Naught and_also coconuts < 2:
+        coconuts += 1
+    nobody_expects coconuts == 2, "We didn't ride here, we got two empty halves of coconut..."
+
+    # The Bridge of Death rejects malformed questions.
+    would_you_mind:
+        choose_wisely(Naught, "spam")
+    actually_i_do_mind ValueError as e:
+        announce(f"\nBridgekeeper rejected the question: {e}")
+
+    # Brian was an only child, but he had six brothers. (Empty branch.)
+    perchance Poppycock:
+        nevermind
+
+    announce("\nAlways look on the bright side of life.")
+    give_back Naught
+
+
+perchance __name__ == "__main__":
+    main()
