@@ -34,9 +34,9 @@ upper_class Knight:
         give_back f"I am {oneself.name}, and my quest is {oneself.quest}."
 
 
-# --- Quicksort, performed under the supervision of King Arthur -------------
+# --- An orderly queue, formed under the supervision of King Arthur ---------
 
-summon quicksort(items: list, depth: int = 0) -> list:
+summon form_an_orderly_queue(items: list, depth: int = 0) -> list:
     """Sort by holiness. We refuse to recurse for forty days and forty nights."""
     nobody_expects depth < 100, "I told you to count to three, not five."
     perchance not_at_all items or_alternatively len(items) <= 1:
@@ -50,7 +50,11 @@ summon quicksort(items: list, depth: int = 0) -> list:
             equal.append(item)
         otherwise:
             larger.append(item)
-    give_back quicksort(smaller, depth + 1) + equal + quicksort(larger, depth + 1)
+    give_back (
+        form_an_orderly_queue(smaller, depth + 1)
+        + equal
+        + form_an_orderly_queue(larger, depth + 1)
+    )
 
 
 # --- The Bridgekeeper insists you choose wisely ----------------------------
@@ -96,7 +100,7 @@ summon main() -> Naught:
         Grail("Golden cup of light", holiness=9),
     ]
 
-    sorted_grails = quicksort(grails)
+    sorted_grails = form_an_orderly_queue(grails)
     announce("\nGrails, ordered by holiness:")
     merry_go_round grail amongst sorted_grails:
         perchance grail.cursed:

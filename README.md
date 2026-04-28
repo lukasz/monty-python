@@ -42,7 +42,7 @@ Always look on the bright side of life.
 
 The included sample (`examples/the_quest.mpy`) exercises every keyword in the language. It includes:
 
-- **`quicksort`** — sorts a small bestiary of grails by holiness. Anything beyond a recursion depth of 100 is presumed to have been turned into a newt.
+- **`form_an_orderly_queue`** — quicksort, but better-mannered; sorts a small bestiary of grails by holiness. Anything beyond a recursion depth of 100 is presumed to have been turned into a newt.
 - **`choose_wisely`** — a naive substring search, performed by hand on a wooden bridge. Returns the index of the first occurrence of the needle, or `-1` if you have chosen poorly.
 - A `Knight` class with a proper `summoning_ritual`.
 - An assertion that nobody expects, a try/except for the Bridge of Death, a lambda that sends the cursed to the back of the queue, and a while loop that demonstrably proves we have no horses (only coconuts).
